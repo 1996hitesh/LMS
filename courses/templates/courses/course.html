@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/course_style.css' %}">
+<div id="wrapper" class="toggled">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand text-white" style="border-bottom: 1px solid white;"> {{course.title}} </li>
+
+            {% for module in modules %}
+                <li>
+                    <a href="#" data-toggle="collapse" data-target="#xyz{{module.id}}"> {{module.module_name}} <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                    {% for topic in topics %}
+                        {% if topic.module_id.id == module.id %}
+                            <ul id="xyz{{module.id}}" class="collapse">
+                                <li><a href="/course/{{course.id}}/{{topic.id}}"><i class="fa fa-angle-double-right"></i> {{topic.topic_name}} </a></li>
+                            </ul>
+                        {% endif %}
+                    {% endfor %}      
+                </li>
+            {% endfor %}           
+        </ul>
+    </div> 
+    <!-- /#sidebar-wrapper -->
+
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <div>
+                <iframe 
+                src="https://www.youtube.com/embed/gfDE2a7MKjA" frameborder="0" allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+</div> 
+<!-- /#wrapper -->
+
+
+<!-- Main Body -->
+
+
+
+
+<script>
+  $(function(){
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+    $(window).resize(function(e) {
+      if($(window).width()<=768){
+        $("#wrapper").removeClass("toggled");
+      }else{
+        $("#wrapper").addClass("toggled");
+      }
+    });
+  });
+   
+</script>
+
+{% endblock %}
