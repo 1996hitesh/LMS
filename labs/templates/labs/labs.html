@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2>Lab Actions</h2>
+    <div class="row mt-5 px-5">
+        <div class="col-lg-2 offset-1">
+            <a class="btn btn-success" href="#" role="button"><i class="fa fa-play" aria-hidden="true"></i> Start</a>
+        </div>
+        <div class="col-lg-2 offset-1">
+            <a class="btn btn-danger" href="#" role="button"><i class="fa fa-stop" aria-hidden="true"></i> Stop</a>
+        </div>
+        <div class="col-lg-2 offset-1">
+            <a class="btn btn-info" href="#" role="button"><i class="fa fa-recycle" aria-hidden="true"></i> Restart</a>
+        </div>
+        <div class="col-lg-2 offset-1">
+            <a class="btn btn-info" href="#" role="button"><i class="fa fa-desktop" aria-hidden="true"></i> Redeploy</a>
+        </div>
+    </div>
+    <hr class="mt-4">
+
+    <h2 class="mt-4">Lab Details</h2>
+    <div class="row">
+        <div class="col-lg-5">
+            {% for document in labs %}
+            <h4 class="mt-4">RDP/SSH Based</h4>
+            <label for="">DNS Name/IP Address</label>
+            <p>{{document.lab.dns_name}}</p>
+
+            <label for="">VM Username</label>
+            <p>{{document.lab.vm_username}}</p>
+
+            <label for="">VM Password</label>
+            <p>{{document.lab.vm_password}}</p>
+
+            <p>Download the RDP File</p>
+            <a href="{{ document.lab.rdp_file.url }}" download class="btn btn-dark mb-3">Download</a>
+            {% endfor %}
+        </div>
+        <div class="col-lg-5 offset-md-1">
+            <h4 class="mt-4">Browser Based</h4>
+            {% for lab in labs %}
+                    <label for="">URL</label>
+                    <p>{{lab.lab.url}}</p>
+
+                    <label for="">Username</label>
+                    <p>{{lab.lab.username}}</p>
+
+                    <label for="">Password</label>
+                    <p>{{lab.lab.password}}</p>
+
+                    <a class="btn btn-info mt-4" href="{{lab.lab.url}}" target="_blank" role="button">Go To Lab</a>
+            {% endfor %}    
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+{% endblock %}
