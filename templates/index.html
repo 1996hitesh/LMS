@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main>
+    <div class="container-fluid">
+        <div class="company_logo">
+            <img src="{% static 'images/new logo.png' %}" alt=""
+                style="margin-left: 35%; margin-top:40px;">
+        </div>
+        <h2 class="mt-5 mb-5">Enrolled Courese</h2>
+        <div class="row">
+            {% for course in courses %}
+            <div class="col-xl-3 col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">{{course.course.title}}</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small stretched-link" href="course/{{course.id}}">View Course</a>
+                        <div class="small"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <hr>
+        <h2 class="mt-5 mb-5">My Labs</h2>
+        <div class="row">
+            <div class="col-xl-3 col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">Lab 1</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <a class="small stretched-link" href="#">View Labs</a>
+                        <div class="small"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
